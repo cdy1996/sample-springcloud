@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * todo
  * Created by 陈东一
@@ -33,6 +35,11 @@ public class HelloController {
     
     @RequestMapping("/world")
     public String world() {
+        try {
+            TimeUnit.SECONDS.sleep(3L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return client + ":" + port ;
     }
     
