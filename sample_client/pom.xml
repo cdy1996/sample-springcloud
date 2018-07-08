@@ -14,7 +14,7 @@
         <groupId>com.cdy</groupId>
         <artifactId>sample_parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../sample_parent/pom.xml</relativePath>
     </parent>
 
     <dependencies>
