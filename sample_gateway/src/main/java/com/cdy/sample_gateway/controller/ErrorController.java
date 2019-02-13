@@ -1,6 +1,6 @@
-package com.cdy.sample_zuul.controller;
+package com.cdy.sample_gateway.controller;
 
-import com.cdy.sample_zuul.filter.Response;
+import com.cdy.sample_gateway.filter.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

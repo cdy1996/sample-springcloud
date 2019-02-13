@@ -1,4 +1,4 @@
-package com.cdy.sample_zuul.filter;
+package com.cdy.sample_gateway.filter;
 
 /**
  * todo

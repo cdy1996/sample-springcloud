@@ -1,4 +1,4 @@
-package com.cdy.sample_zuul;
+package com.cdy.sample_gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;

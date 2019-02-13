@@ -1,4 +1,4 @@
-package com.cdy.sample_zuul;
+package com.cdy.sample_gateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

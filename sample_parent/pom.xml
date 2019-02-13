@@ -8,6 +8,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>../sample_client</module>
+        <module>../sample_client2</module>
+        <module>../sample_gateway</module>
+    </modules>
+
     <name>sample_parent</name>
     <description>Demo project for Spring Boot</description>
 
