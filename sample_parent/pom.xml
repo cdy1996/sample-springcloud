@@ -24,6 +24,7 @@
         <module>../sample_client</module>
         <module>../sample_client2</module>
         <module>../sample_zuul</module>
+        <module>../sample_auth</module>
     </modules>
 
     <properties>
