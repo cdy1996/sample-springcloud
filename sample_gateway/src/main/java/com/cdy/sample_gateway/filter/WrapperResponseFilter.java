@@ -22,7 +22,7 @@ import java.nio.charset.Charset;
  * Created by 陈东一
  * 2019/2/11 0011 21:53
  */
-@Component
+//@Component
 public class WrapperResponseFilter implements GlobalFilter, Ordered {
     @Override
     public int getOrder() {

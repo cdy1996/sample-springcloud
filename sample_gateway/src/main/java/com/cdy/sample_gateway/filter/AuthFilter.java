@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  * 2019/2/11 0011 21:55
  */
 
-@Component
+//@Component
 public class AuthFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {

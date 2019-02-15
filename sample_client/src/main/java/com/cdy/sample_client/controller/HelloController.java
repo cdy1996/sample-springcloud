@@ -1,7 +1,6 @@
 package com.cdy.sample_client.controller;
 
 import com.alibaba.nacos.api.annotation.NacosInjected;
-import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
@@ -34,13 +33,13 @@ public class HelloController {
     @NacosInjected
     private NamingService namingService;
     
-    @Value("${client2.port}")
+    @Value("${client2.port:12001}")
     private String port;
     
-    @NacosValue(value = "${client2.port}", autoRefreshed = true)
-    private boolean port2;
+//    @NacosValue(value = "${client2.port}", autoRefreshed = true)
+//    private boolean port2;
     
-    @Value("${client2.service.id}")
+    @Value("${client2.service.id:client2}")
     private String client;
     
     

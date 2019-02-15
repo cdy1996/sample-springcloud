@@ -1,12 +1,9 @@
-server.port: 13000
-
-
-management.endpoints.web.exposure.include: *
-
+server:
+  port: 13000
 
 spring:
   application:
-    name: sc-gateway-service
+    name: gateway
   cloud:
     gateway:
       discovery:
@@ -15,10 +12,8 @@ spring:
           lowerCaseServiceId: true   #是将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了），比如以/service-hi/*的请求路径被路由转发到服务名为service-hi的服务上。
           filters:
             - StripPrefix=1
-
-  nacos:
-    config:
-      server-addr: 127.0.0.1:8848
-
-    discovery:
-      server-addr: 127.0.0.1:8848
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
