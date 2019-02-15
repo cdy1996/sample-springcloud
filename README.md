@@ -15,3 +15,5 @@ https://blog.csdn.net/cdy1996/article/details/80867062
 https://blog.csdn.net/cdy1996/article/details/80960215
 
 #nacos 使用nacos作为服务发现和配置中心 使用最新的springcloud gateway作为网关
+
+https://blog.csdn.net/cdy1996/article/details/87391609
