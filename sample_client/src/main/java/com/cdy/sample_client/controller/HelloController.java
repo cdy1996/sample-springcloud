@@ -1,22 +1,14 @@
 package com.cdy.sample_client.controller;
 
-import com.alibaba.nacos.api.annotation.NacosInjected;
-import com.alibaba.nacos.api.exception.NacosException;
-import com.alibaba.nacos.api.naming.NamingService;
-import com.alibaba.nacos.api.naming.pojo.Instance;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * todo
@@ -30,8 +22,8 @@ public class HelloController {
     @Autowired
     private RestTemplate restTemplate;
     
-    @NacosInjected
-    private NamingService namingService;
+//    @NacosInjected
+//    private NamingService namingService;
     
     @Value("${client2.port:12001}")
     private String port;
@@ -43,11 +35,12 @@ public class HelloController {
     private String client;
     
     
-    @RequestMapping(value = "/get", method = GET)
-    @ResponseBody
-    public List<Instance> get(@RequestParam String serviceName) throws NacosException {
-        return namingService.getAllInstances(serviceName);
-    }
+//    @RequestMapping(value = "/get", method = GET)
+//    @ResponseBody
+//    @SentinelResource(blockHandler = "handleException", blockHandlerClass = ExceptionUtil.class)
+//    public List<Instance> get(@RequestParam String serviceName) throws NacosException {
+//        return namingService.getAllInstances(serviceName);
+//    }
     
     @RequestMapping("/hello")
     public String hello() {
@@ -56,9 +49,10 @@ public class HelloController {
     }
     
     @RequestMapping("/world")
-    public String world() {
+    @SentinelResource("word")
+    public String world(Long time) {
         try {
-            TimeUnit.SECONDS.sleep(3L);
+            TimeUnit.SECONDS.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
