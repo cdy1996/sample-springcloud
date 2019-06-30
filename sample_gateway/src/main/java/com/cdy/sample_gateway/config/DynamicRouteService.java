@@ -1,6 +1,7 @@
 package com.cdy.sample_gateway.config;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.filter.FilterDefinition;
 import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
@@ -20,14 +21,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.cdy.sample_gateway.config.RedisRouteDefinitionRepository.GATEWAY_ROUTES;
-
 @Service
 public class DynamicRouteService implements ApplicationEventPublisherAware {
     
     @Resource
     private RouteDefinitionWriter routeDefinitionWriter;
-    
+    @Autowired
     private ApplicationEventPublisher publisher;
     
     /**
@@ -74,7 +73,6 @@ public class DynamicRouteService implements ApplicationEventPublisherAware {
     public String delete(String id) {
         try {
             this.routeDefinitionWriter.delete(Mono.just(id));
-            
             notifyChanged();
             return "delete success";
         } catch (Exception e) {
@@ -93,7 +91,7 @@ public class DynamicRouteService implements ApplicationEventPublisherAware {
     private StringRedisTemplate redisTemplate;
     
     @PostConstruct
-    public void main() {
+    public void init() {
         RouteDefinition definition = new RouteDefinition();
         definition.setId("id");
         URI uri = UriComponentsBuilder.fromHttpUrl("http://127.0.0.1:8888/header").build().toUri();
@@ -128,6 +126,7 @@ public class DynamicRouteService implements ApplicationEventPublisherAware {
         definition.setPredicates(Arrays.asList(predicate));
         
         System.out.println("definition:" + JSON.toJSONString(definition));
-        redisTemplate.opsForHash().put(GATEWAY_ROUTES, "key", JSON.toJSONString(definition));
+//        redisTemplate.opsForHash().put(GATEWAY_ROUTES, "key", JSON.toJSONString(definition));
+        this.add(definition);
     }
 }

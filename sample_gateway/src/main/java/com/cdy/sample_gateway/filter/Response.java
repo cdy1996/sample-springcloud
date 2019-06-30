@@ -7,7 +7,7 @@ package com.cdy.sample_gateway.filter;
  */
 public class Response {
     
-    private  String data;
+    private String data;
     private String code;
     private String message;
     

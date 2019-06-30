@@ -12,6 +12,7 @@
         <module>../sample_client</module>
         <module>../sample_client2</module>
         <module>../sample_gateway</module>
+        <module>../custom-ribbon-loadbalancer</module>
     </modules>
 
     <name>sample_parent</name>
@@ -30,9 +31,8 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <nacos.version>0.2.1.RELEASE</nacos.version>
-
+        <spring-cloud-netflix.version>2.0.2.RELEASE</spring-cloud-netflix.version>
     </properties>
-
 
 
     <dependencyManagement>
@@ -43,6 +43,36 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                <version>2.0.2.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-netflix-ribbon</artifactId>
+                <version>2.0.2.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>2.0.2.RELEASE</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

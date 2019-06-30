@@ -1,6 +1,5 @@
 package com.cdy.sample_client.controller;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -21,20 +20,20 @@ public class HelloController {
     
     @Autowired
     private RestTemplate restTemplate;
-    
+
 //    @NacosInjected
 //    private NamingService namingService;
     
     @Value("${client2.port:12001}")
     private String port;
-    
+
 //    @NacosValue(value = "${client2.port}", autoRefreshed = true)
 //    private boolean port2;
     
     @Value("${client2.service.id:client2}")
     private String client;
-    
-    
+
+
 //    @RequestMapping(value = "/get", method = GET)
 //    @ResponseBody
 //    @SentinelResource(blockHandler = "handleException", blockHandlerClass = ExceptionUtil.class)
@@ -49,14 +48,15 @@ public class HelloController {
     }
     
     @RequestMapping("/world")
-    @SentinelResource("word")
+//    @SentinelResource("word")
     public String world(Long time) {
+        System.out.println(time);
         try {
             TimeUnit.SECONDS.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return client + ":" + port ;
+        return client + ":" + port;
     }
     
     

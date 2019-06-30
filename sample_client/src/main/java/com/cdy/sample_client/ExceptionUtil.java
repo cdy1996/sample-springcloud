@@ -7,7 +7,7 @@ package com.cdy.sample_client;
  */
 public class ExceptionUtil {
     
-    public void handleException(){
+    public void handleException() {
         System.out.println("出现熔断");
         
     }

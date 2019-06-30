@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.cdy.customribbonloadbalancer.support.EurekaRibbonDiscoveryRuleAutoConfiguration,\
+com.cdy.customribbonloadbalancer.support.NacosRibbonDiscoveryRuleAutoConfiguration

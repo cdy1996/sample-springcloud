@@ -12,7 +12,7 @@ import org.springframework.http.codec.support.DefaultServerCodecConfigurer;
 public class SampleGatewayApplication {
     
     @Bean
-    public ServerCodecConfigurer serverCodecConfigurer(){
+    public ServerCodecConfigurer serverCodecConfigurer() {
         return new DefaultServerCodecConfigurer();
     }
     
