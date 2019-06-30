@@ -12,7 +12,8 @@
     <artifactId>custom-ribbon-loadbalancer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>custom-ribbon-loadbalancer</name>
-    <description>https://github.com/jmnarloch/ribbon-discovery-filter-spring-cloud-starter</description>
+    <description>因为依赖版本问题以及需求的问题, 该模块以https://github.com/jmnarloch/ribbon-discovery-filter-spring-cloud-starter
+        为基础开发</description>
 
     <properties>
         <java.version>1.8</java.version>
