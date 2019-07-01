@@ -14,22 +14,25 @@ public class EurekaWeightRoundRobin extends WeightRoundRobin{
 		return super.getServer(init(servers));
 	}
 	
-	public List<WeightRoundRobin.Server> init(List<? extends com.netflix.loadbalancer.Server> servers){
+	
+	//EurekaNotificationServerListUpdater
+	public synchronized List<WeightRoundRobin.Server> init(List<? extends com.netflix.loadbalancer.Server> servers){
 		
-		if (servers.size() == serverCount){
-			return super.servers;
-		}
-		
-		List<WeightRoundRobin.Server> serverList = servers.stream().map(e -> {
+		List<Server> serverList = servers.stream().map(e -> {
 			Map<String, String> metadata = ((DiscoveryEnabledServer)e).getInstanceInfo().getMetadata();
 			String weight = metadata.get("weight");
+			System.out.println(e.getPort()+":"+((DiscoveryEnabledServer) e).getInstanceInfo().getMetadata().get("weight"));
 			return new Server(e, StringUtils.isBlank(weight) ? 1 : Integer.valueOf(weight));
 		}).collect(Collectors.toList());
 		
-		maxWeight = greatestWeight(serverList);
-		gcdWeight = greatestCommonDivisor(serverList);
-		serverCount = serverList.size();
-		super.servers = serverList;
+		boolean update = super.servers.containsAll(serverList);
+		
+		if (!update) {
+			maxWeight = greatestWeight(serverList);
+			gcdWeight = greatestCommonDivisor(serverList);
+			serverCount = serverList.size();
+			super.servers = serverList;
+		}
 		return serverList;
 	}
 

@@ -4,6 +4,7 @@ package com.cdy.customribbonloadbalancer.robin;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class WeightRoundRobin{
 	
@@ -120,6 +121,27 @@ public abstract class WeightRoundRobin{
 		
 		public void setWeight(Integer weight) {
 			this.weight = weight;
+		}
+		
+		@Override
+		public int hashCode() {
+			return Objects.hashCode(server.getHostPort())+Objects.hashCode(weight);
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+			if (obj instanceof Server){
+				Server server = (Server) obj;
+				return Objects.equals(this.server.getHostPort(),server.getServer().getHostPort()) &&
+						Objects.equals(this.weight,server.weight);
+			} else {
+				return false;
+			}
+			
+			
 		}
 	}
 

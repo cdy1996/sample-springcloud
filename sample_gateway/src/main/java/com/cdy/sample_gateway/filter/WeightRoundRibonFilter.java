@@ -26,7 +26,10 @@ public class WeightRoundRibonFilter implements GlobalFilter, Ordered {
             RibbonFilterContext currentContext = RibbonFilterContextHolder.getCurrentContext();
             currentContext.add("version", version);
         }
-        Mono<Void> mono = chain.filter(exchange).subscriberContext(ctx -> ctx.put("version", version));
+        Mono<Void> mono = chain.filter(exchange)
+                .subscriberContext(ctx -> ctx.put("version", version))
+                //reactor  对所有请求都正常处理完成后加一个响应参数，或者是打印日志。
+                .doFinally(signal ->  RibbonFilterContextHolder.clearCurrentContext());
         return mono;
         
     }
