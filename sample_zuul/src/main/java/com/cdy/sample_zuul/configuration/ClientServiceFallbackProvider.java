@@ -5,7 +5,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -21,21 +20,20 @@ import java.nio.charset.Charset;
 public class ClientServiceFallbackProvider implements FallbackProvider {
     
     @Override
-    public ClientHttpResponse fallbackResponse(Throwable cause) {
-        if (cause != null && cause.getCause() != null) {
-            String reason = cause.getCause().getMessage();
-            System.err.printf("Excption %s", reason);
-            System.out.println();
-        }
-        return fallbackResponse();
-    }
-    
-    @Override
     public String getRoute() {
         return "client";
     }
     
     @Override
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+        if (cause != null && cause.getCause() != null) {
+            String reason = cause.getCause().getMessage();
+            System.err.printf("Excption %s route %s", reason,route);
+            System.out.println();
+        }
+        return fallbackResponse();
+    }
+    
     public ClientHttpResponse fallbackResponse() {
         return new ClientHttpResponse() {
             @Override
