@@ -21,10 +21,10 @@ public class HelloController {
     @Autowired
     private RestTemplate restTemplate;
     
-    @Value("${client2.port}")
+    @Value("${client2.port:12001}")
     private String port;
     
-    @Value("${client2.service.id}")
+    @Value("${client2.service.id:client2}")
     private String client;
     
     @RequestMapping("/hello")
