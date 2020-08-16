@@ -1,5 +1,6 @@
 package com.cdy.sample_client.controller;
 
+import com.cdy.sample_client.feign.HelloOpenfeignSpringcloud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
@@ -13,7 +14,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
-import java.time.temporal.TemporalUnit;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -52,7 +52,15 @@ public class HelloController {
     private WebClient.Builder webClient;
     @Autowired
     private ReactiveCircuitBreakerFactory rcbFactory;
+    
+    @Autowired
+    HelloOpenfeignSpringcloud helloOpenfeignSpringcloud;
 
+    @RequestMapping("/feign")
+    public String feign(){
+        return helloOpenfeignSpringcloud.feign("123");
+    }
+    
     @RequestMapping("/circuitbreaker")
     public String slow() {
         return cbFactory.create("slow").run(() -> rest.getForObject("http://" + client + "/world", String.class), throwable -> "fallback");
